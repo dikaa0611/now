@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All About This Girl</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            text-align: center;
+            color: white;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+            height: auto;
+            min-height: 100vh;
+            background: black;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            filter: brightness(50%) contrast(1.2);
+        }
+
+        h1 {
+            margin-top: 20px;
+            text-shadow: 5px 5px 10px rgba(255, 192, 203, 0.8);
+            font-size: 4em;
+            font-family: 'Great Vibes', cursive;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        .gallery-button {
+            display: inline-block;
+            padding: 15px 40px;
+            font-size: 1.5em;
+            color: white;
+            background: linear-gradient(135deg, #ff4081, #ff79a5);
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.5);
+        }
+
+        .gallery-button:hover {
+            background: linear-gradient(135deg, #ff79a5, #ff4081);
+            transform: scale(1.1);
+        }
+
+        .gallery {
+            display: none;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            margin-top: 30px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .gallery img {
+            width: 180px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .gallery.show img {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.15);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(255, 255, 255, 0.5);
+        }
+
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 45px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay loop muted>
+        <source src="https://imgur.com/SQVYJVm.mp4" type="video/mp4">
+        Browser tidak mendukung video.
+    </video>
+
+    <h1>All About This Girl</h1>
+
+    <button class="gallery-button" onclick="showGallery()">Lihat Galeri</button>
+
+    <div class="gallery" id="gallery"></div>
+
+    <div class="modal" id="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modal-img">
+    </div>
+
+    <script>
+        function showGallery() {
+            const gallery = document.getElementById("gallery");
+            gallery.style.display = "flex";
+            setTimeout(() => {
+                gallery.classList.add("show");
+            }, 10);
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            const gallery = document.getElementById("gallery");
+            const modal = document.getElementById("modal");
+            const modalImg = document.getElementById("modal-img");
+
+            const images = [
+                "https://i.imgur.com/bPhY5vn.jpeg",
+                "https://i.imgur.com/cqgTa8F.jpeg",
+                "https://i.imgur.com/2qAdIVl.jpeg",
+                "https://i.imgur.com/OY9eiFB.jpeg",
+                "https://imgur.com/MH26Tdq.jpeg",
+                "https://imgur.com/dSdUyVM.jpeg",
+                "https://imgur.com/iQ70cNR.jpeg",
+                "https://imgur.com/QoTIGjt.jpeg",
+                "https://imgur.com/4mmvwTs.jpeg",
+                "https://i.imgur.com/6BGR8Ve.jpeg",
+                "https://i.imgur.com/bPhY5vn.jpeg",
+                "https://i.imgur.com/cqgTa8F.jpeg",
+                "https://i.imgur.com/2qAdIVl.jpeg",
+                "https://i.imgur.com/OY9eiFB.jpeg",
+                "https://i.imgur.com/EH43LCJ.jpeg",
+                "https://i.imgur.com/NXNa6Pd.jpeg",
+                "https://i.imgur.com/dlU5XAM.jpeg",
+                "https://i.imgur.com/6BGR8Ve.jpeg",
+                "https://imgur.com/Pnu0xmU.jpeg",
+                "https://imgur.com/ipgG5fF.jpeg",
+                "https://imgur.com/eaySav0.jpeg",
+                "https://imgur.com/G9qso8t.jpeg",
+                "https://imgur.com/KneE2u9.jpeg",
+                "https://imgur.com/GV84VmA.jpeg",
+                "https://imgur.com/xB8BK01.jpeg",
+                "https://imgur.com/H8BO0IP.jpeg",
+                "https://imgur.com/Z0hLc47.jpeg",
+                "https://imgur.com/G4QYY6u.jpeg",
+                "https://imgur.com/6hynNQ3.jpeg",
+                "https://imgur.com/IKWbjyz.jpeg",
+                "https://imgur.com/m4GWTEp.jpeg",
+                "https://imgur.com/5wrXo8n.jpeg",
+                "https://imgur.com/muFtcc6.jpeg",
+                "https://imgur.com/MxKs6zL.jpeg",
+                "https://imgur.com/cVmpg47.jpeg",
+                "https://imgur.com/DTqT7BD.jpeg",
+                "https://imgur.com/oZ9F7Rl.jpeg",
+                "https://imgur.com/c3Y9zYp.jpeg",
+                "https://imgur.com/0qBS323.jpeg",
+                "https://imgur.com/jMZUtxR.jpeg",
+                "https://imgur.com/x3cPJkf.jpeg",
+                "https://imgur.com/A7vDnmR.jpeg",
+                "https://imgur.com/ujLVAN4.jpeg",
+                "https://imgur.com/e8zdvEP.jpeg",
+                "https://imgur.com/Y48PMuj.jpeg",
+                "https://imgur.com/ppmCbdq.jpeg",
+                "https://imgur.com/HmreIsA.jpeg",
+                "https://imgur.com/oYYB0yt.jpeg",
+                "https://imgur.com/efTcvTc.jpeg",
+                "https://imgur.com/4Nn4a8Y.jpeg",
+                "https://imgur.com/28Be2lp.jpeg",
+                "https://imgur.com/JjFXjZW.jpeg",
+                "https://imgur.com/eqxsEuU.jpeg",
+                "https://imgur.com/PY2vVYY.jpeg",
+                "https://imgur.com/YNAz3F4.jpeg",
+                "https://imgur.com/hJ5lIU5.jpeg",
+                "https://imgur.com/oQWcN4q.jpeg",
+                "https://imgur.com/vgjruxg.jpeg",
+                "https://imgur.com/CRwEQbg.jpeg",
+                "https://imgur.com/IpctLcc.jpeg",
+                "https://imgur.com/EMnTixa.jpeg",
+                "https://imgur.com/QMfm89p.jpeg",
+                "https://imgur.com/VuqF4F2.jpeg",
+                "https://imgur.com/S26Bnub.jpeg",
+                "https://imgur.com/FMeTgcV.jpeg",
+                "https://imgur.com/kjZLqkz.jpeg",
+                "https://imgur.com/enjDh6u.jpeg",
+                "https://imgur.com/lIEMJxP.jpeg",
+                "https://imgur.com/sG2YSPl.jpeg",
+                "https://imgur.com/6AC5ATb.jpeg",
+                "https://imgur.com/A1Kzy7b.jpeg",
+                "https://imgur.com/bibv1kp.jpeg",
+                "https://imgur.com/HMnMzJ2.jpeg",
+                "https://imgur.com/ylTQZZb.jpeg",
+                "https://imgur.com/iQcwpSA.jpeg",
+                "https://imgur.com/RENNBcJ.jpeg",
+                "https://imgur.com/kOMz3ZK.jpeg",
+                "https://imgur.com/qeRNfgd.jpeg",
+                "https://imgur.com/1l2Icrl.jpeg",
+                "https://imgur.com/Ab3AzS3.jpeg",
+                "https://imgur.com/YFyKMGM.jpeg",
+                "https://imgur.com/T0nxUg5.jpeg",
+                "https://imgur.com/Jdnseqw.jpeg",
+                "https://imgur.com/SLDZzm1.jpeg",
+                "https://imgur.com/b4uf6yJ.jpeg",
+                "https://imgur.com/5sugMoX.jpeg",
+                "https://imgur.com/SlUZz2V.jpeg",
+                "https://imgur.com/qMc3Ufz.jpeg",
+                "https://imgur.com/BzVvRWx.jpeg",
+                "https://imgur.com/oSmWUea.jpeg",
+                "https://imgur.com/HO3GkmW.jpeg",
+                "https://imgur.com/DPJb5mx.jpeg",
+                "https://imgur.com/UXBHCwA.jpeg",
+                "https://imgur.com/0r9Y9Nj.jpeg",
+                "https://imgur.com/BDbD1eQ.jpeg",
+                "https://imgur.com/aTai1Ny.jpeg",
+                "https://imgur.com/ovcmmE3.jpeg",
+                "https://imgur.com/dGZIFWJ.jpeg",
+                "https://imgur.com/pmAIyoR.jpeg",
+                "https://imgur.com/YviyssY.jpeg",
+                "https://imgur.com/fYhX7Zr.jpeg",
+                "https://imgur.com/kKX5moK.jpeg",
+                "https://imgur.com/QRZIa0g.jpeg",
+                "https://imgur.com/Y2bbdX4.jpeg",
+                "https://imgur.com/KZg8lGA.jpeg",
+                "https://imgur.com/hx1PZPK.jpeg",
+                "https://imgur.com/K6xIGyZ.jpeg",
+                "https://imgur.com/dTkpER4.jpeg",
+                "https://imgur.com/z6cUzhx.jpeg",
+                "https://imgur.com/1X5xjyE.jpeg",
+                "https://imgur.com/O9cnqSm.jpeg",
+                "https://imgur.com/ahlY499.jpeg",
+                "https://imgur.com/MH26Tdq.jpeg",
+                "https://imgur.com/dSdUyVM.jpeg",
+                "https://imgur.com/iQ70cNR.jpeg",
+                "https://imgur.com/QoTIGjt.jpeg",
+                "https://imgur.com/4mmvwTs.jpeg",
+                "https://imgur.com/Va8LQjc.jpeg",
+                "https://imgur.com/CA6cVtO.jpeg",
+                "https://imgur.com/5KQsnhs.jpeg",
+                "https://imgur.com/ouMQ8xt.jpeg",
+                "https://imgur.com/pDTN32c.jpeg",
+                "https://imgur.com/aQp2Ozr.jpeg",
+                "https://imgur.com/5UAse83.jpeg",
+                "https://imgur.com/vmaR9V5.jpeg",
+                "https://imgur.com/gpydSCS.jpeg",
+                "https://imgur.com/CVCMLah.jpeg",
+                "https://imgur.com/7MjVJ5p.jpeg",
+                "https://imgur.com/FQF0Lqz.jpeg",
+                "https://imgur.com/yTsVNmu.jpeg",
+                "https://imgur.com/lgZx9xZ.jpeg",
+                "https://imgur.com/rf10kyi.jpeg",
+                "https://imgur.com/TONJl94.jpeg",
+                "https://imgur.com/f33xxSK.jpeg",
+                "https://imgur.com/gM20MOT.jpeg",
+                "https://imgur.com/GK9D0mt.jpeg",
+                "https://imgur.com/Kqp3G5n.jpeg",
+                "https://imgur.com/2VDItlb.jpeg",
+                "https://imgur.com/9jPKJZE.jpeg",
+                "https://imgur.com/qyft7Dx.jpeg",
+                "https://imgur.com/MN6UyOc.jpeg",
+                "https://imgur.com/SQVYJVm.jpeg",
+                "https://imgur.com/3eRUxrU.jpeg",
+                "https://imgur.com/fcdpjJN.jpeg",
+                "https://imgur.com/Wa1pgx4.jpeg",
+                "https://imgur.com/oiWU4vp.jpeg",
+                "https://imgur.com/Q0SzkRR.jpeg",
+                "https://imgur.com/TxEfd0U.jpeg",
+                "https://imgur.com/AaBYVI7.jpeg",
+                "https://imgur.com/GWbj9dD.jpeg",
+                "https://imgur.com/fXfu8S0.jpeg",
+                "https://imgur.com/w7qBHt6.jpeg"
+            ];
+
+            images.forEach((src) => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "Romantic Memory";
+                img.addEventListener("click", () => {
+                    modal.style.display = "flex";
+                    modalImg.src = src;
+                });
+                gallery.appendChild(img);
+            });
+        });
+    </script>
+</body>
+</html>
